@@ -45,6 +45,9 @@ class _HomePageState extends State<HomePage> {
 
   void reArrangeHashTags(String text) {
     var list = text.split("\n");
+
+    list.removeWhere((element) => element.isEmpty); //remove empty values
+
     list.shuffle();
 
     String f = list.join("\n");
