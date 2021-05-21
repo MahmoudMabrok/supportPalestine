@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:save_palestine/screens/languages_detail.dart';
+import 'package:save_palestine/screens/list_languages.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,69 +11,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Save Palestine',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: Scaffold(
-            appBar: AppBar(
-              title: Text('Save Palestine'),
-            ),
-            body: HomePage()));
-  }
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  var controle = TextEditingController();
-
-  var computedString = "";
-
-  void reArrangeHashtages(String text) {
-    var list = text.split("\n");
-    list.shuffle();
-
-    String f = list.join("\n");
-    /*  setState(() {
-      computedString = f;
-
-    });*/
-    controle.text = f;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    var window = MediaQuery.of(context);
-    var height = window.size.height;
-    return Padding(
-      padding: EdgeInsets.all(16),
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(),
-            height: height * 0.2,
-            child: TextField(
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              controller: controle,
-              decoration: InputDecoration.collapsed(
-                  hintText: 'add your posts/hastages'),
-            ),
-          ),
-          ElevatedButton(
-              onPressed: () {
-                reArrangeHashtages(controle.text);
-              },
-              child: Text('Re arrange'))
-        ],
+      title: 'Stand with Palestine',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      initialRoute: '/',
+      routes: {
+        '/': (ctx) => ListLanguages(),
+        LanguagesDetail.routeName: (ctx) => LanguagesDetail()
+      },
     );
   }
 }
